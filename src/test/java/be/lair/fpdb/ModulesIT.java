@@ -16,18 +16,26 @@
 //
 package be.lair.fpdb;
 
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.modulith.core.ApplicationModules;
 
-@SpringBootApplication
-class Main {
+class ModulesIT {
 
-    private final Logger log = LoggerFactory.getLogger(getClass());
+    private final Logger log = LoggerFactory.getLogger(ModulesIT.class);
 
-    void main() {
-        log.info("Starting FPDB...");
-        SpringApplication.run(Main.class);
+    private final ApplicationModules modules = ApplicationModules.of(Main.class);
+
+    @Test
+    void verifyModuleStructure() {
+        // print out structure
+        log.info(modules.toString());
+
+        // verify structure
+        modules.verify();
+
+        // generate diagrams
+        // new Documenter(modules).writeModulesAsPlantUml().writeIndividualModulesAsPlantUml();
     }
 }

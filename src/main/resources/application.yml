@@ -1,0 +1,4 @@
+spring.datasource:
+    url: jdbc:sqlite:fpdb.db
+spring.flyway:
+    enabled: true
